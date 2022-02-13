@@ -4,7 +4,6 @@ setup(
     name="distributed-consensus-gym",
     version="0.1.0",
     author="Juan Flores",
-    author_email="rajdesai58.work@gmail.com",
     description="Multi-agent reinforcement learning environment for distributed consensus protocols",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",

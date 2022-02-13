@@ -1,31 +1,23 @@
-"""
-Distributed Consensus Gym - Multi-agent RL environment for consensus protocols.
+"""Distributed Consensus Gym - Multi-agent RL environment for consensus algorithms."""
 
-This package provides OpenAI Gym environments for training reinforcement learning
-agents to discover and optimize distributed consensus algorithms in the presence
-of Byzantine faults, network partitions, and varying system conditions.
-"""
+from gym.envs.registration import register
+from consensus_gym.envs.consensus_env import ConsensusEnv
+from consensus_gym.envs.byzantine_env import ByzantineConsensusEnv
+from consensus_gym.core.network import NetworkSimulator
+from consensus_gym.utils.training import MultiAgentTrainer, FaultInjector
+from consensus_gym.utils.visualization import ConsensusVisualizer
+from consensus_gym.utils.metrics import MetricsCollector
 
-from consensus_gym.envs import (
-    ByzantineConsensusEnv,
-    RaftConsensusEnv,
-    PBFTConsensusEnv,
-    NetworkPartitionEnv,
+register(
+    id='ConsensusEnv-v0',
+    entry_point='consensus_gym.envs:ConsensusEnv',
+    max_episode_steps=1000,
 )
-from consensus_gym.core import ConsensusNode, NetworkSimulator, FaultInjector
-from consensus_gym.metrics import ConsensusMetrics, PerformanceAnalyzer
+
+register(
+    id='ByzantineConsensusEnv-v0',
+    entry_point='consensus_gym.envs:ByzantineConsensusEnv',
+    max_episode_steps=1000,
+)
 
 __version__ = "0.1.0"
-__author__ = "Juan Flores"
-
-__all__ = [
-    "ByzantineConsensusEnv",
-    "RaftConsensusEnv", 
-    "PBFTConsensusEnv",
-    "NetworkPartitionEnv",
-    "ConsensusNode",
-    "NetworkSimulator",
-    "FaultInjector",
-    "ConsensusMetrics",
-    "PerformanceAnalyzer",
-]
